@@ -13,6 +13,7 @@ const Profile = () => {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [error, setError] = useState("");
+  const [showToaster, setShowToaster] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,6 +38,10 @@ const Profile = () => {
         gender
       }, {withCredentials: true});
       dispatch(addUser(user.data));
+      setShowToaster(true);
+      setTimeout(() => {
+        setShowToaster(false);
+      }, 2000);
     } catch(err) {
       console.log(err);
       setError(err.response.data.message);
@@ -71,6 +76,13 @@ const Profile = () => {
               {error && <p className='text-red-800'>Error: {error}</p>}
               <button className="btn btn-neutral mt-4" onClick={handleEditProfile}>Save Profile</button>
             </fieldset>
+        </div>
+      )}
+      {showToaster && (
+        <div className="toast toast-top toast-end mt-10">
+          <div className="alert alert-success">
+            <span>Profile updated successfully.</span>
+          </div>
         </div>
       )}
     </div>

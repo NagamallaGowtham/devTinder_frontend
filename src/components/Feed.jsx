@@ -22,7 +22,7 @@ const Feed = () => {
     fetchFeed();
   }, []);
   return (
-    <div className='flex justify-center my-10'>
+    <div className='flex flex-wrap gap-8 justify-center my-10'>
       {feedUsers && feedUsers.map(user => <UserCard key={user._id} user={user} />)}
     </div>
   )
