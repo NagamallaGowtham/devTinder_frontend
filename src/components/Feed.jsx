@@ -21,6 +21,10 @@ const Feed = () => {
   useEffect(() => {
     fetchFeed();
   }, []);
+
+  if (!feedUsers) return
+
+  if (feedUsers.length === 0) return <h2>No Users left in your Feed</h2>
   return (
     <div className='flex flex-wrap gap-8 justify-center my-10'>
       {feedUsers && feedUsers.map(user => <UserCard key={user._id} user={user} />)}
