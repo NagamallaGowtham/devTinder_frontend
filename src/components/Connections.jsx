@@ -9,8 +9,6 @@ const Connections = () => {
     const dispatch = useDispatch();
 
     const fetchConnections = async () => {
-        if (connections) return;
-
         try {
             const connections = await axios.get(BASE_URL + "/user/connections", {withCredentials: true});
             dispatch(addConnections(connections.data));
